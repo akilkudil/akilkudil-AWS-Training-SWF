@@ -1,5 +1,32 @@
-1. Register Domains
+1. List Domain
 
-aws swf register-domain --name MyNeatNewDomain --workflow-execution-retention-period-in-days 0
+aws swf list-domains --registration-status REGISTERED
 
-2. 
+aws swf list-domains --registration-status DEPRECATED
+
+2. Register Domain
+
+aws swf register-domain --name "MyDomain" --workflow-execution-retention-period-in-days 0
+
+3. List Workflow
+
+aws swf list-workflow-types --domain "TestDomain" --registration-status "REGISTERED"
+
+4. Register Workflow
+
+aws swf register-workflow-type --domain "TestDomain" --name "hopeLeads" --workflow-version "v1"
+
+5. List Activities
+
+
+aws swf list-activity-types --domain "TestDomain" --registration-status "REGISTERED"
+
+6. Register Activity
+
+aws swf register-activity-type --domain "TestDomain" --name "TalkToLead" --activity-version "v1"
+
+7. Start Flow Execution
+
+aws swf start-workflow-execution --domain "TestDomain"  --workflow-id "6546"
+--workflow-type "HopeLeads"
+
