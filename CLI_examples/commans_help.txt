@@ -1,0 +1,5 @@
+1. Register Domains
+
+aws swf register-domain --name MyNeatNewDomain --workflow-execution-retention-period-in-days 0
+
+2. 
