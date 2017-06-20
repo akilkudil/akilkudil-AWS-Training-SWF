@@ -21,29 +21,36 @@ $decisionTask = $swfClient->pollForDecisionTask(array(
     'taskList' => array(
         // name is required
         'name' => $taskList,
-    )
+    
+    ),
+	'reverseOrder'=> true,
 ));
 
 
-$activityTypeVersion = "1";
+$activityTypeVersion = "v1";
 if (count($decisionTask["events"])>0){
     $taskToken = $decisionTask['taskToken'];
     $workFlowId = $decisionTask["workflowExecution"]["workflowId"];
     $runId = $decisionTask["workflowExecution"]["runId"];
-    $lastEventId = $decisionTask["events"][0]['eventId'];
+    $lastEventId = $decisionTask["events"][0]["eventId"];
 	$lastEventId = '"'.$lastEventId.'"';
-    $continue_workflow = false;
-    switch($decisionTask["events"][0]['eventType']){
+	$eventType = $decisionTask["events"][0]['eventType'];	
+	
+    if($decisionTask["events"][0]["eventId"] == "3"){
+		$eventType = 'WorkflowExecutionStarted';
+	}
+   	
+	$continue_workflow = false;
+    switch($eventType){
          case 'WorkflowExecutionStarted':                  
-                  $nextActivity = "TestAct1";                  
+                  $nextActivity = "TalkToLead3";                  
                   $activityId = "1";
                   $continue_workflow = true;
                   break;
-         case 'WorkflowExecutionStartednn':
-                  echo "WorkflowExecutionStarted is event";
+         case 'CompletedTalkToLead3Activity':
+                  echo "Completed Workflow";
                   break;
-	
-    }
+				  }
     if($continue_workflow==true){
         echo "** scheduling activity task: ";
         $swfClient->respondDecisionTaskCompleted(

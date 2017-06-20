@@ -29,7 +29,7 @@ if($taskToken = $activityTask["taskToken"]){
 	$workflowId = $activityTask["workflowExecution"]["workflowId"];
 	$runId =  $activityTask["workflowExecution"]["runId"];
 	switch($activityName){
-		case "TestAct1":
+		case "TalkToLead3":
 		    $taskCompleted = true;
 		break;
 	}
