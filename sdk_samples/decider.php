@@ -13,7 +13,7 @@ $swfClient = SwfClient::factory(array(
 
 $domainName = "TestDomain";
 $taskList = "default";
-
+//while (true){
 $decisionTask = $swfClient->pollForDecisionTask(array(
     // domain is required
     'domain' => $domainName,
@@ -83,7 +83,7 @@ if (count($decisionTask["events"])>0){
        
     }
     else{
-        echo "signalling task complete ";
+        echo "signalling task complete\n";
         $swfClient->respondDecisionTaskCompleted(array(
         "taskToken" => $taskToken,
         "decisions" => array(
@@ -96,9 +96,9 @@ if (count($decisionTask["events"])>0){
     
 }
 else{
-    echo "No Task Remaining";
+    echo "Decider -- No Task Remaining<\n>";
 }
 
-
+//}
 
 ?>
