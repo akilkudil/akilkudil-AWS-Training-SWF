@@ -27,6 +27,5 @@ aws swf register-activity-type --domain "TestDomain" --name "TalkToLead" --activ
 
 7. Start Flow Execution
 
-aws swf start-workflow-execution --domain "TestDomain"  --workflow-id "6546"
---workflow-type "HopeLeads"
+aws swf start-workflow-execution --domain "TestDomain"  --workflow-id "6546" --workflow-type name="HopeLeads",version="v1"
 
